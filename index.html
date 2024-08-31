@@ -351,6 +351,8 @@ R.FINI    : *${rFini.toFixed(3)} KG/M²*
             const reportArea = document.getElementById('reportArea');
             reportArea.value = reportText;
             reportArea.style.display = 'block';
+
+            
         }
 
         function copyReport() {
@@ -403,12 +405,16 @@ R.FINI    : *${rFini.toFixed(3)} KG/M²*
         }
 
         function clearPage() {
-            // Clear page logic
+            document.getElementById('type').textContent = '';
+            document.getElementById('fini').value = '';
+            document.getElementById('brut').value = '';
+            document.getElementById('culture').textContent = '';
+            document.getElementById('coupe').value = '';
+            document.getElementById('superficie').value = '';
+
         }
 
-        function showReport() {
-            // Show report logic
-        }
+        
     </script>
 </body>
 </html>
