@@ -41,7 +41,7 @@
             border-radius: 25px;
             cursor: pointer;
             margin: 5px;
-            width: 18%;
+            width: 16%;
             align-items: center;
             justify-items: center;
         }
@@ -188,8 +188,8 @@
 <body>
     <div class="container">
         <div class="top-buttons">
-            <button class="b1" onclick="clearPage()">STOCK</button>
-            <button class="b1" onclick="showReport()">Recolte</button>
+            <button class="b1" onclick="navigateToPage2()">STOCK</button>
+            <button class="b1" onclick="navigateToPage3()">Recolte</button>
             <button class="b1" onclick="navigateToPage()">Rend kg</button>
             <button class="b1" onclick="navigateToPage1()">Rend sup</button>
             <button class="b1" id="openModal">Ouvrir Modal</button>
@@ -262,8 +262,14 @@
     </div>
 
     <script>
+        function navigateToPage2() {
+            window.location.href = 'https://abdermb98.github.io/stock/'; // Replace with your link
+        }
+        function navigateToPage3() {
+            window.location.href = 'https://abdermb98.github.io/recolt/'; // Replace with your link
+        }
         function navigateToPage() {
-            window.location.href = 'http://127.0.0.1:5500/DISTRIO.HTML'; // Replace with your link
+            window.location.href = 'https://abdermb98.github.io/repport/'; // Replace with your link
         }
 
         function navigateToPage1() {
