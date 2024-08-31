@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Informations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            direction: ltr;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            border: solid rgb(13, 9, 250) 3px;
+            border-radius: 20px;
+            background-color: #18b9ac;
+            padding: 10px;
+        }
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            margin: 10px;
+        }
+        input, select {
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            width: 30%;
+            align-items: center;
+            justify-items: center;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        textarea {
+            width: 97%;
+            height: 200px;
+            padding: 10px;
+            border: 3px solid rgb(13, 9, 250);
+            border-radius: 25px;
+            margin-top: 5px;
+            display: none;
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #18b9ac;
+        }
+        .button-container {
+            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
+            width: 99%;
+            border: rgb(13, 9, 250) solid 3px ;
+            border-radius: 20px;
+            background-color: #18b9ac;
+        }
+        .container h1 {
+            text-align: center;
+            color: #0011ff;
+            border: rgb(13, 9, 250) solid 3px;
+            background-color: #18b9ac;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100%; 
+            max-width: 600px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .form-container input[type="text"]:focus {
+            border-color: #004d40;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 77, 64, 0.3);
+        }
+        .form-container input[readonly] {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+        }
+        .form-container .result {
+            font-weight: bold;
+            color: #004d40;
+        }
+        .form-container .calculate-btn,
+        .form-container .reload-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #004d40;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+        .form-container .calculate-btn:hover,
+        .form-container .reload-btn:hover {
+            background-color: #003830;
+        }
+        .form-container .total {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #004d40;
+        }
+        .history-container {
+            width: 300px;
+        }
+        .history-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .history-list li {
+            background: #ffffff;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-buttons">
+            <button class="b1" onclick="clearPage()">STOCK</button>
+            <button class="b1" onclick="showReport()">Recolte</button>
+            <button class="b1" onclick="navigateToPage()">Rend kg</button>
+            <button class="b1" onclick="navigateToPage1()">Rend sup</button>
+            <button class="b1" id="openModal">Ouvrir Modal</button>
+        </div>
+
+        <form id="infoForm">
+            <label for="date">DATE :</label>
+            <input type="date" id="date" name="date" required>
+
+            <label style="display: none;" for="finca">FINCA :</label>
+            <input style="display: none;" type="text" id="finca" name="finca" required>
+
+            <label for="culture">PARCELLE :</label>
+            <select id="culture" name="PARCELLE" required>
+                <option value="">Sélectionner Parcelle</option>
+                <option value="P40">P40</option>
+                <!-- Add other options here -->
+            </select>
+
+            <label for="type">FINI/BRUT</label>
+            <select id="type" name="PARCELLE" required>
+                <option value="">Sélectionner une option</option>
+                <option value="BRUT">BRUT</option>
+                <option value="FINI">FINI</option>
+            </select>
+
+            <label for="coupe">COUPE :</label>
+            <input type="text" id="coupe" name="coupe" required>
+
+            <label for="superficie">SUPERFICIE :</label>
+            <input type="number" id="superficie" name="superficie" step="0.01" required min="0">
+
+            <label for="brut">BRUT :</label>
+            <input type="number" id="brut" name="brut" step="0.01" required min="0">
+
+            <label for="fini">FINI :</label>
+            <input type="number" id="fini" name="fini" step="0.01" required min="0">
+        </form>
+
+        <div class="button-container">
+            <button type="button" onclick="generateReport()">Termine</button>
+            <button type="button" onclick="copyReport()">Copier le Rapport</button>
+        </div>
+        
+        <textarea id="reportArea" readonly></textarea>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div style="align-items: center;" class="modal-content">
+                <span class="close">&times;</span>
+                <div class="form-container">
+                    <div id="total" class="total">Total: 0 M²</div>
+                    <label for="poto">poto</label>
+                    <input type="text" id="poto" placeholder="Enter value"><br>
+
+                    <label for="poto2">chhh</label>
+                    <input type="text" id="poto2" placeholder="Enter value"><br>
+ 
+                    <button class="calculate-btn" onclick="calculateTotal()">Calculate</button>
+                    <button class="reload-btn" onclick="reloadPage()">Reload</button>
+
+                    <div class="history-container">
+                        <h3>History:</h3>
+                        <ul id="historyList" class="history-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function navigateToPage() {
+            window.location.href = 'http://127.0.0.1:5500/DISTRIO.HTML'; // Replace with your link
+        }
+
+        function navigateToPage1() {
+            window.location.href = 'https://abdermb98.github.io/superficie/'; // Replace with your link
+        }
+
+        function generateReport() {
+            const date = document.getElementById('date').value;
+            const finca = document.getElementById('finca').value;
+            const culture = document.getElementById('culture').value;
+            const type = document.getElementById('type').value;
+            const coupe = document.getElementById('coupe').value;
+            const superficie = parseFloat(document.getElementById('superficie').value);
+            const brut = parseFloat(document.getElementById('brut').value);
+            const fini = parseFloat(document.getElementById('fini').value);
+
+            const rbrut = superficie ? brut / superficie : 0;
+            const rFini = superficie ? fini / superficie : 0;
+            const ecart = brut ? ((brut-fini)*100/brut) : 0;
+            const reportText = `
+DATE   : ${date}
+FINCA  : 20
+CEBOLLINO   : ${culture}
+       *${type}*
+        ${coupe}
+SUPERFICIE: ${superficie} M²
+BRUT      : ${brut} KG
+R.BRUT    : *${rbrut.toFixed(3)} KG/M²*
+FINI      : ${fini} KG
+R.FINI    : *${rFini.toFixed(3)} KG/M²*
+ÉCART     : *${ecart.toFixed(0)}%*
+            `.trim();
+
+            const reportArea = document.getElementById('reportArea');
+            reportArea.value = reportText;
+            reportArea.style.display = 'block';
+        }
+
+        function copyReport() {
+            const reportArea = document.getElementById('reportArea');
+            reportArea.select();
+            document.execCommand('copy');
+            alert('Le rapport a été copié dans le presse-papiers !');
+        }
+
+        // Modal functionality
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("openModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        var totalSum = 0;
+        function calculateTotal() {
+            var poto = parseFloat(document.getElementById('poto').value) || 0;
+            var poto2 = parseFloat(document.getElementById('poto2').value) || 0;
+            var total = 2.5*poto *1.833333* poto2;
+
+            document.getElementById('total').textContent = 'Total: ' + total + ' M²';
+
+            totalSum += parseFloat(total.toFixed(0));
+
+            document.getElementById("total").textContent = "Total: " + totalSum + " M²";
+            var historyList = document.getElementById('historyList');
+            var listItem = document.createElement('li');
+            listItem.textContent = 'Total: ' + total + ' M²';
+            historyList.appendChild(listItem);
+        }
+
+        function reloadPage() {
+            document.getElementById('poto').value = '';
+            document.getElementById('poto2').value = '';
+            document.getElementById('total').textContent = 'Total: 0 M²';
+            document.getElementById('historyList').textContent = '';
+        }
+
+        function clearPage() {
+            // Clear page logic
+        }
+
+        function showReport() {
+            // Show report logic
+        }
+    </script>
+</body>
+</html>
