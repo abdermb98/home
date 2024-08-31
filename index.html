@@ -390,7 +390,7 @@ R.FINI    : *${rFini.toFixed(3)} KG/M²*
 
             totalSum += parseFloat(total.toFixed(0));
 
-            document.getElementById("total").textContent = "Total: " + totalSum + " M²";
+            document.getElementById("total").textContent = "Total: " + totalSum.toFixed(0) + " M²";
             var historyList = document.getElementById('historyList');
             var listItem = document.createElement('li');
             listItem.textContent = 'Total: ' + total + ' M²';
