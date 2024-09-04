@@ -92,9 +92,9 @@
             background-color: rgba(0,0,0,0.4); 
         }
         .modal-content {
-            background-color: #fefefe;
+            background-color: #2c2a2a;
             margin: 0 auto; 
-            padding: 20px;
+            padding: 10px;
             border: 1px solid #888;
             width: 98%; 
             max-width: 600px;
@@ -207,34 +207,16 @@
         }
         /* The Modal (background) */
 /* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+
 
 /* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Adjust width as needed */
-    max-width: 400px; /* Optional: max width */
-}
+
 
 /* The Close Button */
 .close1 {
-    color: #aaa;
+    color: #020202;
     float: right;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: bold;
 }
 
@@ -260,13 +242,8 @@ input[type="password"] {
     font-size: 16px;
 }
 
-button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #004d40;
-    color: white;
-    border: none;
-    cursor: pointer;
+.bb1{
+height: 10px;
 }
 
 button:hover {
@@ -279,7 +256,7 @@ button:hover {
 <body>
     <div class="container">
         <div class="top-buttons">
-            <button id="openModalBtn">Open </button>
+            <button id="openModalBtn">STOCK//CORTE</button>
             <button class="b1" onclick="navigateToPage()">Rend kg</button>
             <button class="b1" onclick="navigateToPage1()">Rend sup</button>
             <button class="b1" id="openModal">Calc sup</button>
@@ -352,14 +329,15 @@ button:hover {
         <!-- The Modal -->
         <div id="myModal" class="modal">
             <div style="align-items: center;" class="modal-content">
-                <span class="close">&times;</span>
+                
                 <div class="form-container">
+                    <span class="close">&times;</span>
                     <div id="total" class="total">Total: 0 M²</div>
                     <label for="poto">NUMBRE DE POTO</label>
-                    <input type="text" id="poto" placeholder="Enter value"><br>
+                    <input type="text" id="poto" placeholder="NUMBRE DE POTO"><br>
 
                     <label for="poto2">NUMBRE DE TABLE</label>
-                    <input type="text" id="poto2" placeholder="Enter value"><br>
+                    <input type="text" id="poto2" placeholder="NUMBRE DE TABLE"><br>
  
                     <button class="calculate-btn" onclick="calculateTotal()">Calculate</button>
                     <button class="reload-btn" onclick="reloadPage()">Reload</button>
@@ -375,15 +353,16 @@ button:hover {
     </div>
     <div id="passwordModal" class="modal">
         <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close1">&times;</span>
-            <h2>Veuillez entrer votre mot de passe</h2>
+        
+            
+            
             <form id="passwordForm">
-                <label for="password">mot de passe:</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Submit</button>
+                <span class="close1">&times;</span>
+                
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
             </form>
-        </div>
+        
     </div>
     <script>
 // Get the modal
