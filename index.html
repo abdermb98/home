@@ -455,10 +455,26 @@ FINI      : ${fini} KG
 R.FINI    : *${rFini.toFixed(3)} KG/M²*
 ÉCART     : *${ecart.toFixed(0)}%*
             `.trim();
-
-            const reportArea = document.getElementById('reportArea');
-            reportArea.value = reportText;
-            reportArea.style.display = 'block';
+            const reportText1 = `
+DATE   : ${date}
+FINCA  : 20
+CEBOLLINO   : ${culture}
+       *${type}*
+        ${coupe}
+SUPERFICIE: ${superficie} M²
+BRUT      : ${brut} KG
+R.BRUT    : *${rbrut.toFixed(3)} KG/M²*
+            `.trim();
+            if (type === 'BRUT') {
+    const reportArea = document.getElementById('reportArea');
+    reportArea.value = reportText1;
+    reportArea.style.display = 'block';
+} else {
+    const reportArea = document.getElementById('reportArea');
+    reportArea.value = reportText;
+    reportArea.style.display = 'block';
+}
+            
 
             
         }
