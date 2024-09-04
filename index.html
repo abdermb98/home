@@ -205,13 +205,81 @@
         .top-buttons button:hover {
             background-color: #003830;
         }
+        /* The Modal (background) */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Adjust width as needed */
+    max-width: 400px; /* Optional: max width */
+}
+
+/* The Close Button */
+.close1 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style for the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label, input, button {
+    margin-bottom: 10px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #004d40;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003d33;
+}
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="top-buttons">
-            <button class="b1" onclick="navigateToPage2()">STOCK</button>
-            <button class="b1" onclick="navigateToPage3()">Recolte</button>
+            <button id="openModalBtn">Open </button>
             <button class="b1" onclick="navigateToPage()">Rend kg</button>
             <button class="b1" onclick="navigateToPage1()">Rend sup</button>
             <button class="b1" id="openModal">Calc sup</button>
@@ -305,8 +373,68 @@
         </div>
 
     </div>
-
+    <div id="passwordModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close1">&times;</span>
+            <h2>Please Enter Your Password</h2>
+            <form id="passwordForm">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
     <script>
+// Get the modal
+var modal1 = document.getElementById("passwordModal");
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("openModalBtn");
+
+// Get the <span> element that closes the modal
+var span11 = document.getElementsByClassName("close1")[0];
+
+// Get the form
+var form1 = document.getElementById("passwordForm");
+
+// Define the correct password
+
+var correctPassword = "STOCK"; // Change this to your desired password
+var correctPassword1 = "CORTE"; // Change this to your desired password
+
+// When the user clicks the button, open the modal 
+btn1.onclick = function() {
+    modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span11.onclick = function() {
+    modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal1) {
+        modal1.style.display = "none";
+    }
+}
+
+// Handle form submission
+form1.onsubmit = function(event) {
+    event.preventDefault(); // Prevent form from submitting normally
+    var password = document.getElementById("password").value;
+    
+    if (password === correctPassword) {
+        window.location.href = "https://abdermb98.github.io/stock/"; // Redirect to YouTube
+    } else if (password === correctPassword1) {
+        window.location.href = "https://abdermb98.github.io/recolt/"; // Redirect to YouTube
+    }
+     else {
+        alert("Incorrect password. Please try again.");
+    }
+}
+
         function navigateToPage2() {
             window.location.href = 'https://abdermb98.github.io/stock/'; // Replace with your link
         }
