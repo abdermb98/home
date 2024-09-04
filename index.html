@@ -264,7 +264,7 @@ button:hover {
 
         <form id="infoForm">
             <label for="date">DATE :</label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date" placeholder="DATE" required>
 
             <label style="display: none;" for="finca">FINCA :</label>
             <input style="display: none;" type="text" id="finca" name="finca" required>
@@ -312,7 +312,7 @@ button:hover {
             <input type="number" id="superficie" name="superficie" step="0.01" required min="0">
 
             <label for="brut">BRUT :</label>
-            <input type="number" id="brut" name="brut" step="0.01" required min="0">
+            <input type="number" id="brut" name="brut" step="0.01" required min="100">
 
             <label for="fini">FINI :</label>
             <input type="number" id="fini" name="fini" step="0.01" required min="0">
@@ -320,6 +320,7 @@ button:hover {
 
         <div class="button-container">
             <button type="button" onclick="generateReport()">Termine</button>
+            <button type="button" onclick="sendToWhatsApp()">Envoyer à WhatsApp</button>
             <button type="button" onclick="copyReport()">Copier le Rapport</button>
             <button type="button" onclick="clearPage()">Effacer</button>
         </div>
@@ -461,6 +462,17 @@ R.FINI    : *${rFini.toFixed(3)} KG/M²*
 
             
         }
+
+        function sendToWhatsApp() {
+    generateReport();
+    const report = document.getElementById("reportArea").value;
+    const encodedReport = encodeURIComponent(report);
+    const phoneNumber = "+212662781207"; // The phone number you want to send the report to
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedReport}`;
+    
+    window.open(whatsappUrl, "_blank");
+}
+
 
         function copyReport() {
             const reportArea = document.getElementById('reportArea');
