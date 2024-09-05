@@ -250,7 +250,22 @@ button:hover {
     background-color: #003d33;
 }
 
-
+.modal11 {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0; 
+            top: 30%; 
+            left: 25%;
+            width: 50%; 
+            height: 50%; 
+            overflow: auto; 
+            
+        }
+.FOR22{
+    height: 150px;
+    
+}
     </style>
 </head>
 <body>
@@ -320,7 +335,7 @@ button:hover {
 
         <div class="button-container">
             <button type="button" onclick="generateReport()">Termine</button>
-            <button type="button" onclick="sendToWhatsApp()">Envoyer à WhatsApp</button>
+            <button type="button" onclick="sendToWhatsApp()">Envoyer sur WhatsApp</button>
             <button type="button" onclick="copyReport()">Copier le Rapport</button>
             <button type="button" onclick="clearPage()">Effacer</button>
         </div>
@@ -352,16 +367,16 @@ button:hover {
         </div>
 
     </div>
-    <div id="passwordModal" class="modal">
+    <div id="passwordModal" class="modal11">
         <!-- Modal content -->
         
             
             
-            <form id="passwordForm">
+            <form id="passwordForm" class="FOR22">
                 <span class="close1">&times;</span>
                 
                 <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-                <button type="submit" style="font-size: 25px;">Se connecter</button>
+                <button type="submit" style="width: 100%; height: 20px;" >Se connecter</button>
             </form>
         
     </div>
