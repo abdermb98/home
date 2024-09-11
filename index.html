@@ -396,6 +396,7 @@ var form1 = document.getElementById("passwordForm");
 
 var correctPassword = "STOCK"; // Change this to your desired password
 var correctPassword1 = "CORTE"; // Change this to your desired password
+var correctPassword2 = "TRATAR"; // Change this to your desired password
 
 // When the user clicks the button, open the modal 
 btn1.onclick = function() {
@@ -423,6 +424,8 @@ form1.onsubmit = function(event) {
         window.location.href = "https://abdermb98.github.io/stock/"; // Redirect to YouTube
     } else if (password === correctPassword1) {
         window.location.href = "https://abdermb98.github.io/recolt/"; // Redirect to YouTube
+    } else if (password === correctPassword2) {
+        window.location.href = "https://abdermb98.github.io/TRAITEMENT/"; // Redirect to YouTube
     }
      else {
         alert("Incorrect password. Please try again.");
